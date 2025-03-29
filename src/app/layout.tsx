@@ -56,13 +56,13 @@ export default function RootLayout({
 		<html lang="en">
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				<div className="min-h-[100dvh]  flex flex-col bg-[url(/imgs/bg3.png)] bg-center bg-cover font-sofia font-sans ">
-					<main className="flex-1 relative overflow-y-auto max-w-[100vw]  bg-skybox overflow-x-clip">
+				<div className="min-h-[100dvh]  flex flex-col bg-[url(/imgs/bg5.jpg)] bg-center bg-cover ">
+					<main className="flex-1 relative overflow-y-auto max-w-[100vw] max-h-[100vh]  bg-skybox overflow-x-clip">
 						<Navbar navItems={navItems} />
 						{children}
 					</main>
 					<footer className=" sticky text-center text-xs sm:text-base py-4  text-slate-400 w-full">
-						© 2025
+						© 2025{" "}
 						<a href="https://alextendjer.com" className="underline">
 							Aleksandar Tendjer
 						</a>
