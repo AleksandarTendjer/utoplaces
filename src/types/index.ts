@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { WithId } from "mongodb";
+import { ColumnDef } from "@tanstack/react-table";
 
 export interface NavbarItem {
 	title: string;
@@ -9,10 +10,17 @@ export interface NavbarItem {
 export interface NavbarProps {
 	navItems: NavbarItem[];
 }
-export interface ItemData extends Omit<WithId<Document>, "location"> {
+interface BaseItem {
 	type: string;
 	name: string;
 	description: string;
 	location: string;
 	current_status: string;
+}
+
+// Extend WithId with your base interface
+export type ItemData = WithId<BaseItem>;
+export interface TableProps {
+	dataItems: ItemData[];
+	columns: ColumnDef<ItemData>[];
 }
