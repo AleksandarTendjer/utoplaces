@@ -15,6 +15,7 @@ interface BaseItem {
 	name: string;
 	description: string;
 	location: string;
+	image: string;
 	current_status: string;
 }
 

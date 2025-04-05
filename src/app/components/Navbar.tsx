@@ -14,7 +14,6 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
 						key={idx}
 						className="aspect-square rounded-full bg-gradient-to-bl from-gray-500 to-gray-400 via-gray-500 "
 						onClick={() => {
-							console.log("ddd");
 							router.push(item.path);
 						}}>
 						<DockLabel>{item.title}</DockLabel>

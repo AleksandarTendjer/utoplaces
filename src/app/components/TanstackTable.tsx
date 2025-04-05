@@ -22,11 +22,34 @@ import {
 	ChevronsRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export const LocationColumns: ColumnDef<ItemData>[] = [
 	{
-		accessorKey: "type",
-		header: "Type",
+		accessorKey: "Image",
+		header: () => (
+			<div className="flex items-center gap-2">
+				<img
+					src="/imgs/frutigerPhoto.png"
+					alt="Image icon"
+					className="h-5 w-5"
+				/>
+				<span>Image</span>
+			</div>
+		),
+		cell: ({ getValue }) => {
+			const value = getValue() as string;
+			return (
+				<Image
+					src={`data:image/png;base64,${value}`}
+					alt="Item visual"
+					width={10}
+					height={10}
+					loading="lazy"
+					quality={70}
+				/>
+			);
+		},
 		size: 150, // Fixed width for column
 		minSize: 20, // Prevent shrinking
 		maxSize: 150, // Prevent expanding
@@ -34,7 +57,16 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 	},
 	{
 		accessorKey: "name",
-		header: "Name",
+		header: () => (
+			<div className="flex items-center gap-2">
+				<img
+					src="/imgs/butterfly.png" // or base64 string
+					alt="Image icon"
+					className="h-5 w-5"
+				/>
+				<span>Name</span>
+			</div>
+		),
 		footer: (props) => props.column.id,
 		size: 150, // Fixed width for column
 		minSize: 20, // Prevent shrinking
@@ -44,24 +76,19 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 				{getValue() as string}
 			</div>
 		),
-	},
-	{
-		accessorKey: "description",
-		header: "Description",
-		size: 150, // Fixed width for column
-		minSize: 20, // Prevent shrinking
-		maxSize: 150, // Prevent expanding
-		footer: (props) => props.column.id,
-		cell: ({ getValue }) => (
-			<div className="truncate max-w-[280px]" title={getValue() as string}>
-				{getValue() as string}
-			</div>
-		),
-		meta: { className: "hidden sm:block" },
 	},
 	{
 		accessorKey: "location",
-		header: "Location",
+		header: () => (
+			<div className="flex items-center gap-2">
+				<img
+					src="/imgs/locationIcon.png" // or base64 string
+					alt="Image icon"
+					className="h-5 w-5"
+				/>
+				<span>Location</span>
+			</div>
+		),
 		size: 150, // Fixed width for column
 		minSize: 20, // Prevent shrinking
 		maxSize: 150, // Prevent expanding
@@ -74,7 +101,16 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 	},
 	{
 		accessorKey: "current_status",
-		header: "Status",
+		header: () => (
+			<div className="flex items-center gap-2">
+				<img
+					src="/imgs/statusIcon.png" // or base64 string
+					alt="Image icon"
+					className="h-5 w-5"
+				/>
+				<span>Status</span>
+			</div>
+		),
 		size: 150, // Fixed width for column
 		minSize: 20, // Prevent shrinking
 		maxSize: 150, // Prevent expanding
@@ -156,12 +192,14 @@ const TanstackTable: React.FC<TableProps> = ({ dataItems, columns }) => {
 				<tbody>
 					{table.getRowModel().rows.map((row) => {
 						return (
-							<tr key={row.id}>
+							<tr
+								key={row.id}
+								className=" hover:bg-gray-300/30 hover:cursor-[url(/imgs/magnifierCursor.png)]">
 								{row.getVisibleCells().map((cell) => {
 									return (
 										<td
 											key={cell.id}
-											className={` px-4 py-3 hover:bg-gray-300/30 ${cn(cell.column.columnDef.meta?.className)}`}>
+											className={` px-4 py-3 ${cn(cell.column.columnDef.meta?.className)}`}>
 											{flexRender(
 												cell.column.columnDef.cell,
 												cell.getContext()

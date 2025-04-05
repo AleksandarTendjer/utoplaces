@@ -3,8 +3,6 @@ import { Suspense } from "react";
 import Spinner from "../components/Spinner";
 import { LocationColumns } from "../components/TanstackTable";
 
-// Define columns
-
 async function getData() {
 	try {
 		const response = await fetch(
