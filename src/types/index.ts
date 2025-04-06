@@ -19,7 +19,6 @@ interface BaseItem {
 	current_status: string;
 }
 
-// Extend WithId with your base interface
 export type ItemData = WithId<BaseItem>;
 export interface TableProps {
 	dataItems: ItemData[];

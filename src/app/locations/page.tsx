@@ -2,6 +2,7 @@ import TanstackTable from "../components/TanstackTable";
 import { Suspense } from "react";
 import Spinner from "../components/Spinner";
 import { LocationColumns } from "../components/TanstackTable";
+import Container from "../components/Container";
 
 async function getData() {
 	try {
@@ -20,7 +21,11 @@ async function getData() {
 }
 async function TableContent() {
 	const locationItems = await getData();
-	return <TanstackTable dataItems={locationItems} columns={LocationColumns} />;
+	return (
+		<Container>
+			<TanstackTable dataItems={locationItems} columns={LocationColumns} />
+		</Container>
+	);
 }
 
 export default function Locations() {

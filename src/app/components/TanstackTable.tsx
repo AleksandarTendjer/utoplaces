@@ -23,16 +23,20 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useItemStore } from "../stores/itemStore";
 
 export const LocationColumns: ColumnDef<ItemData>[] = [
 	{
-		accessorKey: "Image",
+		accessorKey: "image",
 		header: () => (
 			<div className="flex items-center gap-2">
-				<img
+				<Image
 					src="/imgs/frutigerPhoto.png"
 					alt="Image icon"
 					className="h-5 w-5"
+					width={60}
+					height={60}
 				/>
 				<span>Image</span>
 			</div>
@@ -41,36 +45,38 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 			const value = getValue() as string;
 			return (
 				<Image
-					src={`data:image/png;base64,${value}`}
+					src={value}
 					alt="Item visual"
-					width={10}
-					height={10}
+					width={80}
+					height={80}
 					loading="lazy"
 					quality={70}
 				/>
 			);
 		},
-		size: 150, // Fixed width for column
-		minSize: 20, // Prevent shrinking
-		maxSize: 150, // Prevent expanding
+		size: 150,
+		minSize: 20,
+		maxSize: 150,
 		footer: (props) => props.column.id,
 	},
 	{
 		accessorKey: "name",
 		header: () => (
 			<div className="flex items-center gap-2">
-				<img
-					src="/imgs/butterfly.png" // or base64 string
+				<Image
+					src="/imgs/butterfly.png"
 					alt="Image icon"
 					className="h-5 w-5"
+					width={60}
+					height={60}
 				/>
 				<span>Name</span>
 			</div>
 		),
 		footer: (props) => props.column.id,
-		size: 150, // Fixed width for column
-		minSize: 20, // Prevent shrinking
-		maxSize: 150, // Prevent expanding
+		size: 150,
+		minSize: 20,
+		maxSize: 150,
 		cell: ({ getValue }) => (
 			<div className="truncate max-w-[280px]" title={getValue() as string}>
 				{getValue() as string}
@@ -81,17 +87,19 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 		accessorKey: "location",
 		header: () => (
 			<div className="flex items-center gap-2">
-				<img
-					src="/imgs/locationIcon.png" // or base64 string
+				<Image
+					src="/imgs/locationIcon.png"
 					alt="Image icon"
 					className="h-5 w-5"
+					width={60}
+					height={60}
 				/>
 				<span>Location</span>
 			</div>
 		),
-		size: 150, // Fixed width for column
-		minSize: 20, // Prevent shrinking
-		maxSize: 150, // Prevent expanding
+		size: 150,
+		minSize: 20,
+		maxSize: 150,
 		footer: (props) => props.column.id,
 		cell: ({ getValue }) => (
 			<div className="truncate max-w-[280px]" title={getValue() as string}>
@@ -103,17 +111,19 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 		accessorKey: "current_status",
 		header: () => (
 			<div className="flex items-center gap-2">
-				<img
-					src="/imgs/statusIcon.png" // or base64 string
+				<Image
+					src="/imgs/statusIcon.png"
 					alt="Image icon"
 					className="h-5 w-5"
+					width={60}
+					height={60}
 				/>
 				<span>Status</span>
 			</div>
 		),
-		size: 150, // Fixed width for column
-		minSize: 20, // Prevent shrinking
-		maxSize: 150, // Prevent expanding
+		size: 150,
+		minSize: 20,
+		maxSize: 150,
 		cell: ({ getValue }) => {
 			const status = getValue() as string;
 			let color = "";
@@ -126,6 +136,13 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 	},
 ];
 const TanstackTable: React.FC<TableProps> = ({ dataItems, columns }) => {
+	const router = useRouter();
+
+	const navigateToItem = (item: ItemData) => {
+		useItemStore.getState().setSelectedItem(item);
+		router.push(`locations/${item._id.toString()}`);
+	};
+
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
 	);
@@ -147,7 +164,8 @@ const TanstackTable: React.FC<TableProps> = ({ dataItems, columns }) => {
 	});
 
 	return (
-		<div className="p-4 m-4 sm:m-6 text-xs sm:text-sm bg items-center justify-between flex flex-col  bg-gray-300/35 border  border-gray-200/50  shadow-xl shadow-white/50 rounded-lg !font-[Pretendo]">
+		<>
+			{" "}
 			<table>
 				<thead>
 					{table.getHeaderGroups().map((headerGroup) => (
@@ -194,6 +212,7 @@ const TanstackTable: React.FC<TableProps> = ({ dataItems, columns }) => {
 						return (
 							<tr
 								key={row.id}
+								onClick={() => navigateToItem(row.original)}
 								className=" hover:bg-gray-300/30 hover:cursor-[url(/imgs/magnifierCursor.png)]">
 								{row.getVisibleCells().map((cell) => {
 									return (
@@ -270,7 +289,7 @@ const TanstackTable: React.FC<TableProps> = ({ dataItems, columns }) => {
 					))}
 				</select>
 			</div>
-		</div>
+		</>
 	);
 };
 export default TanstackTable;

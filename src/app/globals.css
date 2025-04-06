@@ -19,3 +19,15 @@
 	font-style: normal;
 	font-display: swap;
 }
+@layer utilities {
+	.cursor-magnifier {
+		cursor: url("/imgs/magnifierCursor.png"), auto !important;
+	}
+}
+@theme {
+	--color-frutigerGreen: #9ecabb;
+	--color-frutigerGreenButtonUp: #c8ee89;
+	--color-frutigerGreenButtonDown: #60a032;
+	--color-frutigerBlueButtonDown: #5590dc;
+	--color-frutigerBlueButtonDown: #a6eefc;
+}

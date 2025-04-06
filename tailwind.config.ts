@@ -12,6 +12,9 @@ const config: Config = {
 				pretendo: ['"Pretendo Regular"', "sans-serif"],
 				spincycle: ['"Spin Cycle OT Regular"', "sans-serif"],
 			},
+			cursor: {
+				magnifier: "url(/imgs/magnifierCursor.png), auto",
+			},
 		},
 	},
 	plugins: [],
