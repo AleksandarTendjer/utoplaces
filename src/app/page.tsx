@@ -22,7 +22,7 @@ export default function Home() {
 								height={70}
 							/>
 							<h1 className="text-3xl  tracking-tight !font-[Spin_Cycle_OT_Regular] drop-shadow-[0_1.4px_1.4px_rgba(0,0,0,0.8)] text-frutigerGreen sm:text-7xl ">
-								Howdy There
+								Welcome to Utoplaces
 							</h1>
 							<Image
 								src="/imgs/fishBowl.png"
@@ -33,12 +33,11 @@ export default function Home() {
 							/>
 						</div>
 
-						<p className="mt-8 text-sm !font-[RoSpritendo] text-slate-300/70  drop-shadow-[0_1.4px_1.4px_rgba(0,0,0,0.8)] sm:text-xl/8 mb-8">
-							This webpage is designed to serve a purpose. Its purpose is to
-							show in real life late y2k and frutiger era architecture and
-							interior design. It is place where we can go to and explore and
-							worship the future that we were promised. We`ll it partially
-							happened, and this is the proof.
+						<p className="mt-8 text-sm !font-[RoSpritendo] text-slate-200/80  drop-shadow-[0_1.4px_1.4px_rgba(0,0,0,0.8)] sm:text-xl/8 mb-8">
+							This platform is made to help you discover IRL locations, that
+							contain a fusion of eco-futurism, dreamy landscapes and in general
+							harmony between humans, nature and technology. Here, utopia isn’t
+							escapism—it’s already present.
 						</p>
 						<Magnetic
 							intensity={0.2}
@@ -58,7 +57,7 @@ export default function Home() {
 									actionArea="global"
 									range={200}>
 									<span className="drop-shadow-[0_1.4px_1.4px_rgba(0,0,0,0.8)]">
-										Show me the locations
+										Show me what you’ve got
 									</span>
 								</Magnetic>
 							</button>

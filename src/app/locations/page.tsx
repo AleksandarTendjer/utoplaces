@@ -21,7 +21,9 @@ async function getData() {
 }
 async function DataContent() {
 	const locationItems = await getData();
-	return <TanstackTable dataItems={locationItems} columns={LocationColumns} />;
+	return (
+		<TanstackTable dataItems={locationItems || []} columns={LocationColumns} />
+	);
 }
 
 export default function Locations() {

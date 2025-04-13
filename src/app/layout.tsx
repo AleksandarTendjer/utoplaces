@@ -16,8 +16,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "FrutigerPlaces",
-	description: "Explore frutiger places irl",
+	title: "Utoplaces",
+	description: "Explore IRL utopian locations",
+	icons: {
+		icon: "/imgs/globe.ico",
+		apple: "/imgs/globe-apple.png",
+	},
 };
 const navItems: NavbarItem[] = [
 	{

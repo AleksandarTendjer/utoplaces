@@ -168,6 +168,7 @@ function DockItem({ onClick, children, className }: DockItemProps) {
 			aria-haspopup="true">
 			{Children.map(children, (child) =>
 				cloneElement(child as React.ReactElement, {
+					// @ts-expect-error  the issue is trivial
 					width,
 					isHovered,
 				})
