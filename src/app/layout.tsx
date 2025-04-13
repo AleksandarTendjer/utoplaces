@@ -24,10 +24,9 @@ const navItems: NavbarItem[] = [
 		title: "Home",
 		icon: (
 			<Image
-				src="/imgs/home.png"
+				src="/imgs/home2.png"
 				alt="Home"
-				width={24}
-				height={24}
+				fill
 				className="h-full w-full object-contain"
 			/>
 		),
@@ -37,10 +36,9 @@ const navItems: NavbarItem[] = [
 		title: "Locations",
 		icon: (
 			<Image
-				src="/imgs/mapPin.png"
+				src="/imgs/magnifier2.png"
 				alt="Locations"
-				width={26}
-				height={24}
+				fill
 				className="h-full w-full object-contain self-center"
 			/>
 		),

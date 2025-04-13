@@ -7,7 +7,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
 	const router = useRouter();
 
 	return (
-		<div className="absolute top-2 left-1/2 max-w-full -translate-x-1/2">
+		<div className="absolute top-2 left-1/2 max-w-full -translate-x-1/2 z-100">
 			<Dock className="items-end pb-3">
 				{navItems.map((item, idx) => (
 					<DockItem

@@ -6,7 +6,7 @@ type ItemStore = {
 	setSelectedItem: (item: ItemData) => void;
 };
 
-export const useItemStore = create<ItemStore>((set) => ({
+export const useItemStore = create<ItemStore>()((set) => ({
 	selectedItem: null,
 	setSelectedItem: (item) => set({ selectedItem: item }),
 }));

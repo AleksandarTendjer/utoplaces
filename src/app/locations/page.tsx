@@ -2,7 +2,7 @@ import TanstackTable from "../components/TanstackTable";
 import { Suspense } from "react";
 import Spinner from "../components/Spinner";
 import { LocationColumns } from "../components/TanstackTable";
-import Container from "../components/Container";
+import ResponsiveWrapper from "../components/ResponsiveWrapper";
 
 async function getData() {
 	try {
@@ -13,26 +13,24 @@ async function getData() {
 			const data = await response.json();
 			return data;
 		} else {
-			console.error("Failed to fetch random cat");
+			console.error("Failed to fetch locations from API");
 		}
 	} catch (error) {
-		console.error("Error fetchinglocations:", error);
+		console.error("Error fetching locations:", error);
 	}
 }
-async function TableContent() {
+async function DataContent() {
 	const locationItems = await getData();
-	return (
-		<Container>
-			<TanstackTable dataItems={locationItems} columns={LocationColumns} />
-		</Container>
-	);
+	return <TanstackTable dataItems={locationItems} columns={LocationColumns} />;
 }
 
 export default function Locations() {
 	return (
-		<div className="w-full min-h-screen items-center justify-center flex">
+		<div className="w-full min-h-screen items-center justify-center flex p-4">
 			<Suspense fallback={<Spinner />}>
-				<TableContent />
+				<ResponsiveWrapper>
+					<DataContent />
+				</ResponsiveWrapper>
 			</Suspense>
 		</div>
 	);

@@ -25,12 +25,13 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useItemStore } from "../stores/itemStore";
+import Container from "./Container";
 
 export const LocationColumns: ColumnDef<ItemData>[] = [
 	{
 		accessorKey: "image",
 		header: () => (
-			<div className="flex items-center gap-2">
+			<div className="flex items-center gap-2 !font-[TypelightSans]">
 				<Image
 					src="/imgs/frutigerPhoto.png"
 					alt="Image icon"
@@ -49,20 +50,19 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 					alt="Item visual"
 					width={80}
 					height={80}
-					loading="lazy"
 					quality={70}
 				/>
 			);
 		},
-		size: 150,
-		minSize: 20,
+		size: 100, // Base size
+		minSize: 60,
 		maxSize: 150,
 		footer: (props) => props.column.id,
 	},
 	{
 		accessorKey: "name",
 		header: () => (
-			<div className="flex items-center gap-2">
+			<div className="flex items-center gap-2 !font-[TypelightSans]">
 				<Image
 					src="/imgs/butterfly.png"
 					alt="Image icon"
@@ -74,8 +74,8 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 			</div>
 		),
 		footer: (props) => props.column.id,
-		size: 150,
-		minSize: 20,
+		size: 100, // Base size
+		minSize: 60,
 		maxSize: 150,
 		cell: ({ getValue }) => (
 			<div className="truncate max-w-[280px]" title={getValue() as string}>
@@ -86,7 +86,7 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 	{
 		accessorKey: "location",
 		header: () => (
-			<div className="flex items-center gap-2">
+			<div className="items-center gap-2 !font-[TypelightSans] ">
 				<Image
 					src="/imgs/locationIcon.png"
 					alt="Image icon"
@@ -97,10 +97,11 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 				<span>Location</span>
 			</div>
 		),
-		size: 150,
-		minSize: 20,
+		size: 100,
+		minSize: 60,
 		maxSize: 150,
 		footer: (props) => props.column.id,
+		meta: { className: "hidden sm:table-cell " },
 		cell: ({ getValue }) => (
 			<div className="truncate max-w-[280px]" title={getValue() as string}>
 				{getValue() as string}
@@ -110,7 +111,7 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 	{
 		accessorKey: "current_status",
 		header: () => (
-			<div className="flex items-center gap-2">
+			<div className=" items-center gap-2 !font-[TypelightSans] ">
 				<Image
 					src="/imgs/statusIcon.png"
 					alt="Image icon"
@@ -121,8 +122,8 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 				<span>Status</span>
 			</div>
 		),
-		size: 150,
-		minSize: 20,
+		size: 100,
+		minSize: 60,
 		maxSize: 150,
 		cell: ({ getValue }) => {
 			const status = getValue() as string;
@@ -130,8 +131,9 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 			if (status === "Operational") color = "text-green-300";
 			if (status === "Inactive") color = "text-red-400";
 			if (status === "Redesigned") color = "text-yellow-300";
-			return <span className={` ${color}`}>{status}</span>;
+			return <span className={` ${color} `}>{status}</span>;
 		},
+		meta: { className: "hidden sm:table-cell" },
 		footer: (props) => props.column.id,
 	},
 ];
@@ -165,17 +167,59 @@ const TanstackTable: React.FC<TableProps> = ({ dataItems, columns }) => {
 
 	return (
 		<>
-			{" "}
-			<table>
+			<div className="space-y-4 sm:hidden">
+				{table.getRowModel().rows.map((row) => {
+					let color = "text-green-300";
+					if (row.original.current_status === "Operational")
+						color = "text-green-300";
+					if (row.original.current_status === "Inactive")
+						color = "text-red-400";
+					if (row.original.current_status === "Redesigned")
+						color = "text-yellow-300";
+					return (
+						<Container
+							key={row.id}
+							className=" p-4 mx-8 sm:m-8 max-w-[calc(100vw-4rem)] sm:max-w-none">
+							<div
+								className=" rounded-lg p-4"
+								onClick={() => navigateToItem(row.original)}>
+								<div className="flex gap-4 mb-3">
+									<Image
+										src={row.original.image}
+										alt="sd"
+										width={80}
+										height={80}
+										className="rounded"
+									/>
+									<h3 className="text-xl !font-[RoSpiritendo] text-gray-200/80">
+										{row.original.name}
+									</h3>
+								</div>
+								<div className="grid grid-cols-2 gap-2 text-sm !font-[TypelightSans]">
+									<div>Location: {row.original.location}</div>
+									<div>
+										Status:
+										<span className={`${color}`}>
+											{row.original.current_status}
+										</span>
+									</div>
+								</div>
+							</div>
+						</Container>
+					);
+				})}
+			</div>
+
+			<table className="w-full hidden sm:block">
 				<thead>
 					{table.getHeaderGroups().map((headerGroup) => (
-						<tr key={headerGroup.id}>
+						<tr key={headerGroup.id} className="items-center">
 							{headerGroup.headers.map((header) => {
 								return (
 									<th
 										key={header.id}
 										colSpan={header.colSpan}
-										className={`px-4 py-3 text-left border-b-2 shaadow-lg border-gray-200/50 ${cn(header.column.columnDef.meta?.className)}`}
+										className={`px-4 py-3 text-center sm:text-left text-slate-300 border-b-2 shadow-lg border-gray-200/50 ${cn(header.column.columnDef.meta?.className)}`}
 										style={{
 											width: header.getSize(),
 											minWidth: header.column.columnDef.minSize,
@@ -213,12 +257,12 @@ const TanstackTable: React.FC<TableProps> = ({ dataItems, columns }) => {
 							<tr
 								key={row.id}
 								onClick={() => navigateToItem(row.original)}
-								className=" hover:bg-gray-300/30 hover:cursor-[url(/imgs/magnifierCursor.png)]">
+								className=" hover:bg-gray-300/30  !font-[TypelightSans] text-slate-200 hover:cursor-[url(/imgs/magnifierCursor.png)]">
 								{row.getVisibleCells().map((cell) => {
 									return (
 										<td
 											key={cell.id}
-											className={` px-4 py-3 ${cn(cell.column.columnDef.meta?.className)}`}>
+											className={`  px-4 py-3 ${cn(cell.column.columnDef.meta?.className)}`}>
 											{flexRender(
 												cell.column.columnDef.cell,
 												cell.getContext()
@@ -263,7 +307,7 @@ const TanstackTable: React.FC<TableProps> = ({ dataItems, columns }) => {
 						{table.getPageCount()}
 					</strong>
 				</span>
-				<span className="flex items-center gap-1">
+				<span className=" hidden sm:flex items-center gap-1">
 					| Go to page:
 					<input
 						type="number"

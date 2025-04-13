@@ -21,7 +21,7 @@ export default function Home() {
 								width={70}
 								height={70}
 							/>
-							<h1 className="text-3xl  tracking-tight !font-[Spin_Cycle_OT_Regular] text-frutigerGreen sm:text-7xl ">
+							<h1 className="text-3xl  tracking-tight !font-[Spin_Cycle_OT_Regular] drop-shadow-[0_1.4px_1.4px_rgba(0,0,0,0.8)] text-frutigerGreen sm:text-7xl ">
 								Howdy There
 							</h1>
 							<Image
@@ -33,8 +33,8 @@ export default function Home() {
 							/>
 						</div>
 
-						<p className="mt-8 text-sm !font-[Pretendo_Regular] text-slate-300/70 sm:text-xl/8 mb-8">
-							This webpage is designed to serve a purpose. It`s purpose is to
+						<p className="mt-8 text-sm !font-[RoSpritendo] text-slate-300/70  drop-shadow-[0_1.4px_1.4px_rgba(0,0,0,0.8)] sm:text-xl/8 mb-8">
+							This webpage is designed to serve a purpose. Its purpose is to
 							show in real life late y2k and frutiger era architecture and
 							interior design. It is place where we can go to and explore and
 							worship the future that we were promised. We`ll it partially
@@ -48,7 +48,7 @@ export default function Home() {
 							{" "}
 							<button
 								type="button"
-								className="inline-flex items-center rounded-lg border !font-[Pretendo_Regular] border-zinc-100  text-slate-200 bg-gradient-to-t from-frutigerGreenButtonDown to-frutigerGreenButtonUp px-4 py-2 text-sm  transition-all duration-200 "
+								className="inline-flex items-center rounded-lg border !font-[RoSpritendo] border-zinc-100  text-slate-200 bg-gradient-to-t from-frutigerGreenButtonDown to-frutigerGreenButtonUp px-4 py-2 text-sm  transition-all duration-200 "
 								onClick={() => {
 									router.push("/locations");
 								}}>
@@ -57,7 +57,9 @@ export default function Home() {
 									springOptions={springOptions}
 									actionArea="global"
 									range={200}>
-									<span>Show me the locations</span>
+									<span className="drop-shadow-[0_1.4px_1.4px_rgba(0,0,0,0.8)]">
+										Show me the locations
+									</span>
 								</Magnetic>
 							</button>
 						</Magnetic>

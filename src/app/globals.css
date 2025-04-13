@@ -1,28 +1,22 @@
 @import "tailwindcss";
 
 @font-face {
-	font-family: "Pretendo Regular";
+	font-family: "Spritendo";
 	src:
-		url("/fonts/pretendo-webfont.woff2") format("woff2"),
-		url("/fonts/pretendo-webfont.woff") format("woff");
+		url("/fonts/RoSpritendoSemiboldBeta.woff2") format("woff2"),
+		url("/fonts/RoSpritendoSemiboldBeta.woff") format("woff");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
 }
-
 @font-face {
-	font-family: "Spin Cycle OT Regular";
+	font-family: "TypelightSans";
 	src:
-		url("/fonts/spincycle_ot-webfont.woff2") format("woff2"),
-		url("/fonts/spincycle_ot-webfont.woff") format("woff");
+		url("/fonts/TypelightSans.woff2") format("woff2"),
+		url("/fonts/TypelightSans.woff") format("woff");
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
-}
-@layer utilities {
-	.cursor-magnifier {
-		cursor: url("/imgs/magnifierCursor.png"), auto !important;
-	}
 }
 @theme {
 	--color-frutigerGreen: #9ecabb;

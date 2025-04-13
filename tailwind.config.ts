@@ -9,8 +9,8 @@ const config: Config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				pretendo: ['"Pretendo Regular"', "sans-serif"],
-				spincycle: ['"Spin Cycle OT Regular"', "sans-serif"],
+				RoSpritendo: ['"Spritendo"', "sans-serif"],
+				TypelightSans: ['"TypelightSans"', "sans-serif"],
 			},
 			cursor: {
 				magnifier: "url(/imgs/magnifierCursor.png), auto",
