@@ -26,6 +26,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useItemStore } from "../stores/itemStore";
 import Container from "./Container";
+import { useTableStorage } from "../stores/tableStorage";
 
 export const LocationColumns: ColumnDef<ItemData>[] = [
 	{
@@ -139,6 +140,7 @@ export const LocationColumns: ColumnDef<ItemData>[] = [
 ];
 const TanstackTable: React.FC<TableProps> = ({ dataItems, columns }) => {
 	const router = useRouter();
+	const { pageIndex, pageSize, setPagination } = useTableStorage();
 
 	const navigateToItem = (item: ItemData) => {
 		useItemStore.getState().setSelectedItem(item);
@@ -154,6 +156,15 @@ const TanstackTable: React.FC<TableProps> = ({ dataItems, columns }) => {
 		filterFns: {},
 		state: {
 			columnFilters,
+			pagination: { pageIndex, pageSize },
+		},
+		onPaginationChange: (updater) => {
+			const newPagination =
+				typeof updater === "function"
+					? updater({ pageIndex, pageSize })
+					: updater;
+
+			setPagination(newPagination.pageIndex, newPagination.pageSize);
 		},
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),

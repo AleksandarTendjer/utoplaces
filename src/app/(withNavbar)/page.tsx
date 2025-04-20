@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Magnetic } from "./components/motion-primitives/magnetic";
+import { Magnetic } from "../components/motion-primitives/magnetic";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -15,7 +15,7 @@ export default function Home() {
 					<div className=" text-balance text-center  ">
 						<div className="flex flex-row justify-between">
 							<Image
-								src="/imgs/fishBowl.png"
+								src="/imgs/fishbowl.png"
 								className="w-7 h-7 sm:w-10 sm:h-10"
 								alt="image"
 								width={70}
@@ -25,7 +25,7 @@ export default function Home() {
 								Welcome to Utoplaces
 							</h1>
 							<Image
-								src="/imgs/fishBowl.png"
+								src="/imgs/fishbowl.png"
 								className="w-7 h-7 sm:w-10 sm:h-10"
 								alt="image"
 								width={70}

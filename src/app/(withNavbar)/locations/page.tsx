@@ -1,8 +1,8 @@
-import TanstackTable from "../components/TanstackTable";
+import TanstackTable from "../../components/TanstackTable";
 import { Suspense } from "react";
-import Spinner from "../components/Spinner";
-import { LocationColumns } from "../components/TanstackTable";
-import ResponsiveWrapper from "../components/ResponsiveWrapper";
+import Spinner from "../../components/Spinner";
+import { LocationColumns } from "../../components/TanstackTable";
+import ResponsiveWrapper from "../../components/ResponsiveWrapper";
 
 async function getData() {
 	try {
